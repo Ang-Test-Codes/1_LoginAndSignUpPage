@@ -21,9 +21,13 @@ export class UserLoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const localData = localStorage.getItem("signupUsers");
+    if(localData != null){
+      this.signupUsers = JSON.parse(localData);
+    }
   }
 
-  onSignUp(){
+  onSignUp(){    
     this.signupUsers.push(this.signupObj);
     localStorage.setItem("signupUsers", JSON.stringify(this.signupUsers));
     this.signupObj={
@@ -33,5 +37,16 @@ export class UserLoginComponent implements OnInit {
     };
   }
 
-  onLogIn(){}
+  onLogIn(){
+    debugger;
+    const isUserExist = this.signupUsers.find(m => m.username == this.loginObj.username
+                                            && m.password == this.loginObj.password);
+    if(isUserExist != undefined){
+      alert("User Loged in Successessfully!");
+    }
+    else{
+      alert("Invalide Credentials!\nPlease try again!");
+    }
+  
+  }
 }
