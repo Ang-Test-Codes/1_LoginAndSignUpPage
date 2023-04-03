@@ -38,7 +38,6 @@ export class UserLoginComponent implements OnInit {
   }
 
   onLogIn(){
-    debugger;
     const isUserExist = this.signupUsers.find(m => m.username == this.loginObj.username
                                             && m.password == this.loginObj.password);
     if(isUserExist != undefined){
